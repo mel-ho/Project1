@@ -1,6 +1,6 @@
 * {
-  margin: 0;
-  padding: 0;
+  margin: 10;
+  padding: 10;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
@@ -52,6 +52,13 @@ body {
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.active {
+  box-shadow: 0 8px 16px 0 yellow
+}
+.notactive{
+  box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .results {

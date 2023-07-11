@@ -1,56 +1,19 @@
-// create timer class
+// create timer
 
-class Timer {
-  constructor({
-    seconds = 0,
-    minutes = 0,
-    timerSeconds = 0,
-    timerMinutes = 0,
-    interval = null,
-    counter = false,
-  }) {
-    this.seconds = seconds;
-    this.minutes = minutes;
-    this.timerSeconds = timerSeconds;
-    this.timerMinutes = timerMinutes;
-    this.interval = interval;
-    this.counter = counter;
-  }
+const timer = document.getElementById("countdowntimer");
 
-  runTimer() {
-    this.seconds++;
-
-    if (this.seconds / 60 === 1) {
-      this.seconds = 0;
-      this.minutes++;
-    }
-
-    if (this.seconds < 10) {
-      this.timerSeconds = "0" + this.seconds.toString();
+function timerStart(counter = 60) {
+  let interval = setInterval(() => {
+    timer.innerHTML = "Countdown Timer: " + counter + " seconds left";
+    if (counter < 1) {
+      // the timer has reaached zero
+      timer.innerHTML = "Times Up";
+      clearInterval(interval);
+      gameEnds();
     } else {
-      this.timerSeconds = this.seconds;
+      counter--;
     }
-    document.getElementById("timer").innerHTML =
-      this.timerMinutes + ":" + this.timerSeconds;
-  }
-
-  startTimer() {
-    if (this.counter === false) {
-      this.interval = window.setInterval(() => this.runTimer(), 1000);
-      this.counter = true;
-    } else {
-      window.clearInterval(this.interval);
-      this.counter = false;
-    }
-  }
-
-  resetTimer() {
-    widown.clearInterval(this.interval);
-    this.seconds = 0;
-    this.minutes = 0;
-    document.getElementById("timer").innterHTML = "0:00";
-    document.getElementById("startTimer").innerHTML = "START";
-  }
+  }, 1000);
 }
 
 // card properties
@@ -118,7 +81,8 @@ class Deck {
       this.displayDeck[i] = this.deck.pop();
     }
     displayCard(this.displayDeck);
-    document.getElementById("remainingcards").innerText = this.deck.length;
+    document.getElementById("remainingcards").innerText =
+      "Remaining Cards: " + this.deck.length;
   }
 }
 
@@ -126,7 +90,9 @@ class Deck {
 function displayCard(displayDeck) {
   for (let i = 0; i < displayDeck.length; i++) {
     x = "card" + (i + 1);
-    document.getElementById(x).src = displayDeck[i].image;
+    //document.getElementById(x).src = displayDeck[i].image;
+    document.getElementById(x).innerHTML = `
+    <img src="${displayDeck[i].image}" />`;
   }
 }
 
@@ -136,9 +102,6 @@ function replaceThreeCards(select, deck) {
   newCards[0] = deck.deck.pop();
   newCards[1] = deck.deck.pop();
   newCards[2] = deck.deck.pop();
-  console.log(newCards);
-
-  console.log(select);
 
   card1Idx = select[0][0].slice(4) - 1;
   card2Idx = select[1][0].slice(4) - 1;
@@ -148,9 +111,7 @@ function replaceThreeCards(select, deck) {
   deck.displayDeck[card1Idx] = newCards[0];
   deck.displayDeck[card2Idx] = newCards[1];
   deck.displayDeck[card3Idx] = newCards[2];
-
   select.splice(0, 3);
-
   displayCard(deck.displayDeck);
 }
 
@@ -203,24 +164,26 @@ function checkSets(anyDeck) {
   for (i = 0; i < setOfSets.length; i++) {
     let status = matchProperty(setOfSets[i], properties);
     if (status === true) {
-      console.log(setOfSets[i]);
+      //console.log(setOfSets[i]);
       numOfSets++;
-      document.getElementById("numofsets").innerText = numOfSets;
+      document.getElementById("numofsets").innerText =
+        "Sets Available: " + numOfSets;
     }
   }
-
-  console.log(numOfSets);
+  // haven't tested. if no more sets to redeal
+  if (numOfSets === 0) {
+    d.selectStartingCards();
+  }
 }
 
 // function to start the game
 function startGame() {
   const d = new Deck(); // initialize deck
-  const timer = new Timer({});
 
   d.createDeck();
   d.shuffleDeck();
   d.selectStartingCards();
-  timer.startTimer();
+  timerStart(60);
 
   checkSets(d.displayDeck);
 
@@ -247,32 +210,37 @@ function startGame() {
         const card = d.displayDeck[i];
         if (select.length < 2) {
           select.push([elementId, card]);
-          console.log(select);
           return select;
-        } else {
+        } else if (select.length === 2) {
           select.push([elementId, card]);
-          console.log(select);
-          if (matchProperty(select, properties) == false) {
-            console.log("cards dontmatch");
-          } else {
-            // number of sets increase by 1
-            playerScore++;
-            // replace 3 selected cards
-            replaceThreeCards(select, d);
-            checkSets(d.displayDeck);
-            document.getElementById("score").innerText = playerScore;
-            document.getElementById("remainingcards").innerText = d.deck.length;
-          }
+        }
+        if (matchProperty(select, properties) == false) {
+          console.log("cards dont match");
+        } else {
+          // number of sets increase by 1
+          playerScore++;
+          // replace 3 selected cards
+          replaceThreeCards(select, d);
+          checkSets(d.displayDeck);
+          document.getElementById("score").innerText =
+            "Sets Found: " + playerScore;
+          document.getElementById("remainingcards").innerText =
+            "Remaining Cards: " + d.deck.length;
         }
       }
     }
   });
 }
 
-// incomplete
 function gameEnds() {
-  // when timer reaches 0
-  // save score
+  document.getElementById("score").innerText =
+    "Game is Over. You found " +
+    document.getElementById("score").innerText.slice(12) +
+    " set(s).";
+
+  document.getElementById("countdowntimer").innerText = "";
+  document.getElementById("numofsets").innerText = "";
+  document.getElementById("remainingcards").innerText = "";
 }
 
 startGame();
