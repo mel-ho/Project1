@@ -1,94 +1,3 @@
-// function to check for matching combinations
-function matchColor(inputArray) {
-  if (
-    inputArray[0].color === inputArray[1].color &&
-    inputArray[0].color === inputArray[2].color
-  ) {
-    console.log("colors match");
-    return true;
-  } else if (
-    inputArray[0].color !== inputArray[1].color &&
-    inputArray[0].color !== inputArray[2].color &&
-    inputArray[1].color !== inputArray[2].color
-  ) {
-    console.log("colors all unmatch");
-    return true;
-  } else console.log("no color pattern found");
-  return false;
-}
-
-function matchNumber(inputArray) {
-  if (
-    inputArray[0].number === inputArray[1].number &&
-    inputArray[0].number === inputArray[2].number
-  ) {
-    console.log("numbers match");
-    return true;
-  } else if (
-    inputArray[0].number !== inputArray[1].number &&
-    inputArray[0].number !== inputArray[2].number &&
-    inputArray[1].number !== inputArray[2].number
-  ) {
-    console.log("numbers all unmatch");
-    return true;
-  } else console.log("no number pattern found");
-  return false;
-}
-
-function matchShade(inputArray) {
-  if (
-    inputArray[0].shade === inputArray[1].shade &&
-    inputArray[0].shade === inputArray[2].shade
-  ) {
-    console.log("shades match");
-    return true;
-  } else if (
-    inputArray[0].shade !== inputArray[1].shade &&
-    inputArray[0].shade !== inputArray[2].shade &&
-    inputArray[1].shade !== inputArray[2].shade
-  ) {
-    console.log("shades all unmatch");
-    return true;
-  } else console.log("no shade pattern found");
-  return false;
-}
-
-function matchShape(inputArray) {
-  if (
-    inputArray[0].shape === inputArray[1].shape &&
-    inputArray[0].shape === inputArray[2].shape
-  ) {
-    console.log("shapes match");
-    return true;
-  } else if (
-    inputArray[0].shape !== inputArray[1].shape &&
-    inputArray[0].shape !== inputArray[2].shape &&
-    inputArray[1].shape !== inputArray[2].shape
-  ) {
-    console.log("shapes all unmatch");
-    return true;
-  } else console.log("no shape pattern found");
-  return false;
-}
-
-function matchCards(inputArray) {
-  let count = 0;
-  if (
-    matchColor(inputArray) &&
-    matchNumber(inputArray) &&
-    matchShade(inputArray) &&
-    matchShape(inputArray) === true
-  ) {
-    count++;
-  }
-}
-
-console.log(matchColor(inputArray));
-console.log(matchNumber(inputArray));
-console.log(matchShade(inputArray));
-console.log(matchShape(inputArray));
-console.log(matchCards(inputArray));
-
 // class GameBoard {
 //   constructor() {
 //     this.remainingDeck = [];
@@ -124,4 +33,25 @@ console.log(matchCards(inputArray));
 //   editPlayerName(name) {
 //     this.playerName = name; // not sure if supposed to use the get name thing
 //   }
+// }
+let card1 = {};
+let card3 = {};
+let card7 = {};
+
+const select = [
+  ["card1", card1],
+  ["card3", card3],
+  ["card7", card7],
+];
+
+function replaceThreeCards(select) {
+//   card1Idx = select[0][0].slice(-1);
+//   card2Idx = select[1][0].slice(-1);
+//   card3Idx = select[2][0].slice(-1);
+
+//   this.displayDeck[card1Idx] = this.deck.pop();
+//   this.displayDeck[card2Idx] = this.deck.pop();
+//   this.displayDeck[card3Idx] = this.deck.pop();
+
+//   displayCard(this.displayDeck);
 // }
