@@ -1,5 +1,9 @@
-// create timer
+// create player / player list
+const playerList = [];
+let playerName = "";
+let playerScore = 0;
 
+// create timer
 const timer = document.getElementById("countdowntimer");
 
 function timerStart(counter = 60) {
@@ -22,6 +26,14 @@ const colors = ["red", "green", "purple"];
 const numbers = ["1", "2", "3"];
 const shades = ["solid", "striped", "open"];
 const shapes = ["oval", "squiggle", "diamond"];
+
+// create Player class
+class Player {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+}
 
 // create Card class
 class Card {
@@ -164,7 +176,7 @@ function checkSets(anyDeck) {
   for (i = 0; i < setOfSets.length; i++) {
     let status = matchProperty(setOfSets[i], properties);
     if (status === true) {
-      //console.log(setOfSets[i]);
+      console.log(setOfSets[i]);
       numOfSets++;
       document.getElementById("numofsets").innerText =
         "Sets Available: " + numOfSets;
@@ -177,13 +189,13 @@ function checkSets(anyDeck) {
 }
 
 // function to start the game
-function startGame() {
+function startGame(time) {
   const d = new Deck(); // initialize deck
 
   d.createDeck();
   d.shuffleDeck();
   d.selectStartingCards();
-  timerStart(60);
+  timerStart(time);
 
   checkSets(d.displayDeck);
 
@@ -193,71 +205,106 @@ function startGame() {
   let match = false;
   let playerScore = 0;
 
-  document.addEventListener("click", (e) => {
-    // get elementID of selected card
-    let elementId = e.target.id;
-    // to deselect if already in select array
-    for (let j = 0; j < select.length; j++) {
-      if (elementId === select[j][0]) {
-        select.splice(j, 1);
-        console.log(select);
-        return select;
-      }
-    }
-    // search and add card details into select array
-    for (let i = 0; i < d.displayDeck.length; i++) {
-      if (elementId === "card" + (i + 1)) {
-        const card = d.displayDeck[i];
-        if (select.length < 2) {
-          select.push([elementId, card]);
+  // getting all the elements with the card class and returning it in an array
+  const cardDiv = document.getElementsByClassName("card");
+
+  Array.from(cardDiv).forEach((e) =>
+    e.addEventListener("click", (e) => {
+      let elementId = e.currentTarget.id;
+      // to deselect if already in select array
+      for (let j = 0; j < select.length; j++) {
+        if (elementId === select[j][0]) {
+          select.splice(j, 1);
+          console.log(select);
+          console.log(elementId);
+          e.currentTarget.classList.remove("active");
           return select;
-        } else if (select.length === 2) {
-          select.push([elementId, card]);
-        }
-        if (matchProperty(select, properties) == false) {
-          console.log("cards dont match");
-        } else {
-          // number of sets increase by 1
-          playerScore++;
-          // replace 3 selected cards
-          replaceThreeCards(select, d);
-          checkSets(d.displayDeck);
-          document.getElementById("score").innerText =
-            "Sets Found: " + playerScore;
-          document.getElementById("remainingcards").innerText =
-            "Remaining Cards: " + d.deck.length;
         }
       }
-    }
-  });
+      // search and add card details into select array
+      for (let i = 0; i < d.displayDeck.length; i++) {
+        if (elementId === "card" + (i + 1)) {
+          const card = d.displayDeck[i];
+          console.log(select.length);
+          if (select.length < 2) {
+            select.push([elementId, card]);
+            e.currentTarget.classList.add("active");
+            console.log(select);
+            return select;
+          } else if (select.length === 2) {
+            select.push([elementId, card]);
+            e.currentTarget.classList.add("active");
+            if (matchProperty(select, properties) == false) {
+              console.log("cards dont match");
+              console.log(select);
+              return select;
+            } else {
+              // number of sets increase by 1
+              playerScore++;
+              // replace 3 selected cards
+              replaceThreeCards(select, d);
+              checkSets(d.displayDeck);
+              document.getElementById("score").innerText =
+                "Sets Found: " + playerScore;
+              document.getElementById("remainingcards").innerText =
+                "Remaining Cards: " + d.deck.length;
+            }
+          }
+        }
+      }
+    })
+  );
 }
 
 function gameEnds() {
-  document.getElementById("score").innerText =
-    "Game is Over. You found " +
+  playerScore = document.getElementById("score").innerText.slice(12);
+  document.getElementById("name").innerText =
+    "Game is Over. " +
+    playerName +
+    " found " +
     document.getElementById("score").innerText.slice(12) +
     " set(s).";
+
+  const cardDiv = document.getElementsByClassName("card");
+  Array.from(cardDiv).forEach(
+    (e) => (e.innerHTML = `<img id="carda" src="Image/SETlogosmall.JPG" />`)
+  );
 
   document.getElementById("countdowntimer").innerText = "";
   document.getElementById("numofsets").innerText = "";
   document.getElementById("remainingcards").innerText = "";
+
+  playerList.push([playerName, playerScore]);
+  console.log(playerList);
+
+  return;
 }
 
-startGame();
+// initialize game
 
-/*
-current progress
-- main gameplay is complete
-- - availble sets completed
-- - replace cards completed
-still to be done
-- need to set countdown timer
-- need to have start game trigger
-- need to have end game trigger
+let highScoreButton = document.getElementById("highscorebutton");
+highScoreButton.onclick = function () {
+  alert("Current High Score");
+};
 
+let howToPlayButton = document.getElementById("howtoplay");
+howToPlayButton.onclick = function () {
+  confirm(
+    "Instructions to Play can be found at https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf"
+  );
+};
 
-stretched goals
-- create game where the sets available will be 6 and you take the shortest time to find all of them. no replacement of cards.
-- - will need to disable the replacecards
-- - timer will need to count up like now.
-*/
+let startGameButton = document.getElementById("startgamebutton");
+startGameButton.onclick = function () {
+  let text = "";
+  playerName = prompt("Please enter your name", "Anonymous");
+  if (playerName === null || playerName === "") {
+    text = "No name given";
+  } else {
+    text = "Hello" + playerName;
+  }
+  document.getElementById("name").innerText = playerName + " is playing";
+
+  startGame(20);
+  return playerName;
+};

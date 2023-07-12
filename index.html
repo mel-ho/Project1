@@ -10,17 +10,15 @@
     <div id="wrapper">
       <div id="MenuBar">
         <h1>SET</h1>
-        <a
-          href="https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf"
-          target="_blank"
-        >
-          How to Play
-        </a>
+        <button id="startgamebutton">Start Game</button>
+        <button id="howtoplay">How to Play</button>
+        <button id="highscorebutton">High Score</button>
       </div>
+
       <div id="gameboard">
         <div class="cards">
           <div class="card" id="card1">
-            <img src="Image/SETlogosmall.JPG" />
+            <img id="carda" src="Image/SETlogosmall.JPG" />
           </div>
           <div class="card" id="card2">
             <img src="Image/SETlogosmall.JPG" />
@@ -56,17 +54,18 @@
             <img src="Image/SETlogosmall.JPG" />
           </div>
         </div>
-        <div id="footer">
-          <div class="timergrp">
-            <p id="countdowntimer">Countdown Timer:</p>
-          </div>
-          <div>
-            <p id="numofsets"></p>
-            <p id="score">Sets Found: 0</p>
-          </div>
-          <div>
-            <p id="remainingcards"></p>
-          </div>
+      </div>
+      <div id="footer">
+        <p id="name"></p>
+        <div class="timergrp">
+          <p id="countdowntimer"></p>
+        </div>
+        <div>
+          <p id="numofsets"></p>
+          <p id="score"></p>
+        </div>
+        <div>
+          <p id="remainingcards"></p>
         </div>
       </div>
     </div>
