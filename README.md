@@ -11,19 +11,19 @@ Game is based on the card game SETS
 - HTML
 - CSS
 
-### Getting Started
+### Getting Started:
 
 - Unzip the zip file
 - click index.html to start play the game
 
-### Next Step
+### Next Steps:
 
 **create continuous mode**
 
-- no timer
-- cards will keep being replaced.
-- bug found: hangs when no more cards to replace
-- bug found: when no available sets = 0, hangs.
+- timer function removed
+- cards will keep being replaced until it runs out
+- bug found: end game function not working when no more cards to replace.
+- bug found:end game function not working when no available sets = 0, hangs.
 
 **create challenge mode**
 
