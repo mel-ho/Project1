@@ -3,13 +3,14 @@
 ### main game elements completed
 
 **cards**
-
 - had to create the card class and link the images to the correct card
 - made use of the way i named the images to loop to find the images and insert it into each card.
-  **timer**
+
+**timer**
 - initially did it without a variable then had to keep going into the code to change since i wanted it longer and shorter
 - in the end added a number variable which might be useful when expending the game to have different countdown durations.
-  **gameboard**
+
+**gameboard**
 - had a bit of trouble as the image and card container were two seperate elements and i needed to get the id when i clicked and i could only have one or the other since i was using target instead of currenttarget.
 - also when i was trying to pick out the class "cards", it kept giving me undefined. figured cos it was returning and array.
 
@@ -36,7 +37,8 @@
 
 - created function to load all elements of gameboard
 - create button trigger that starts function
-  **end game**
+
+**end game**
 - function completed
 - had to figure out how to disable game board and to show score
 
