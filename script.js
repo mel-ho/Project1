@@ -336,7 +336,7 @@ startGameButton.onclick = function () {
     if (playerName === null || playerName === "") {
       playerName = "Anonymous";
     }
-    startGame(20);
+    startGame(30);
   } else {
     gameEnds();
   }
