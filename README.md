@@ -14,7 +14,7 @@ Game is based on the card game SETS
 
 ### Getting Started:
 
-- Unzip the zip file
+- Download all folders including the Image folder
 - click index.html to start play the game
 - You can also play the game at [Link](https://wallgecko-sets.netlify.app/)
 
