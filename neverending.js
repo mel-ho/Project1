@@ -91,7 +91,7 @@ function endNeverendingGame() {
 
   for (i = 0; i < playerList.length; i++) {
     if (playerList[i][1] <= playerScore) {
-      playerList.splice(i, 0, [playerName, playerScore]);
+      playerList.splice(i, 0, [playerName, playerScore, playerMode]);
       break;
     } else {
       playerList.push([playerName, playerScore, playerMode]);
