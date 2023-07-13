@@ -13,7 +13,10 @@ function timerStart(counter = 60) {
   timer.innerHTML = "Countdown Timer: " + counter + " seconds left";
   let interval = setInterval(() => {
     timer.innerHTML = "Countdown Timer: " + (counter - 1) + " seconds left";
-    if (document.getElementById("startgamebutton").innerText === "Start Game") {
+    if (
+      document.getElementById("startgamebutton").innerText ===
+      "Start Timed Game"
+    ) {
       // the game is stopped before timer is up
       timer.innerHTML = "";
       clearInterval(interval);
@@ -127,7 +130,6 @@ function replaceThreeCards(select, deck) {
   card1Idx = select[0][0].slice(4) - 1;
   card2Idx = select[1][0].slice(4) - 1;
   card3Idx = select[2][0].slice(4) - 1;
-  console.log(card1Idx, card2Idx, card3Idx);
 
   deck.displayDeck[card1Idx] = newCards[0];
   deck.displayDeck[card2Idx] = newCards[1];
@@ -144,20 +146,16 @@ function matchProperty(inputArray, properties) {
       inputArray[0][1][properties[i]] === inputArray[1][1][properties[i]] &&
       inputArray[0][1][properties[i]] === inputArray[2][1][properties[i]]
     ) {
-      //console.log(properties[i] + ": match");
       counter += 1;
     } else if (
       inputArray[0][1][properties[i]] !== inputArray[1][1][properties[i]] &&
       inputArray[0][1][properties[i]] !== inputArray[2][1][properties[i]] &&
       inputArray[1][1][properties[i]] !== inputArray[2][1][properties[i]]
     ) {
-      //console.log(properties[i] + ": all unmatch");
       counter += 1;
     } else {
-      //console.log(properties[i] + ": no pattern found");
     }
   }
-  //console.log(counter !== 0 && counter % 4 === 0);
 
   return counter !== 0 && counter % 4 === 0;
 }
@@ -185,7 +183,6 @@ function checkSets(anyDeck) {
   for (i = 0; i < setOfSets.length; i++) {
     let status = matchProperty(setOfSets[i], properties);
     if (status === true) {
-      console.log(setOfSets[i]);
       numOfSets++;
       document.getElementById("numofsets").innerText =
         "Sets Available: " + numOfSets;
@@ -215,8 +212,8 @@ function startGame(time) {
   // code to select 3 cards
 
   const select = [];
-  let match = false;
-  let playerScore = 0;
+  playerMode = "Timed";
+  playerScore = 0;
 
   // getting all the elements with the card class and returning it in an array
   const cardDiv = document.getElementsByClassName("card");
@@ -228,8 +225,6 @@ function startGame(time) {
       for (let j = 0; j < select.length; j++) {
         if (elementId === select[j][0]) {
           select.splice(j, 1);
-          console.log(select);
-          console.log(elementId);
           e.currentTarget.classList.remove("active");
           return select;
         }
@@ -238,18 +233,14 @@ function startGame(time) {
       for (let i = 0; i < d.displayDeck.length; i++) {
         if (elementId === "card" + (i + 1)) {
           const card = d.displayDeck[i];
-          console.log(select.length);
           if (select.length < 2) {
             select.push([elementId, card]);
             e.currentTarget.classList.add("active");
-            console.log(select);
             return select;
           } else if (select.length === 2) {
             select.push([elementId, card]);
             e.currentTarget.classList.add("active");
             if (matchProperty(select, properties) == false) {
-              console.log("cards dont match");
-              console.log(select);
               return select;
             } else {
               // number of sets increase by 1
@@ -273,11 +264,12 @@ function startGame(time) {
       }
     })
   );
+  return playerMode;
 }
 
 function gameEnds() {
-  let playerMode = "Timed";
   playerScore = document.getElementById("score").innerText.slice(12);
+  playerMode = "Timed";
   document.getElementById("name").innerText =
     "Game is Over.\n " +
     playerName +
@@ -286,13 +278,11 @@ function gameEnds() {
     " set(s).";
 
   document.getElementById("main").innerHTML = "";
-  document.getElementById("startgamebutton").innerText = "Start Game";
+  document.getElementById("startgamebutton").innerText = "Start TImed Game";
   document.getElementById("countdowntimer").innerText = "";
   document.getElementById("numofsets").innerText = "";
   document.getElementById("score").innerText = "";
   document.getElementById("remainingcards").innerText = "";
-
-  console.log("Player List:" + playerList);
 
   for (i = 0; i < playerList.length; i++) {
     if (playerList[i][1] <= playerScore) {
@@ -310,7 +300,7 @@ function gameEnds() {
 // high score page
 let highScoreButton = document.getElementById("highscorebutton");
 highScoreButton.onclick = function () {
-  document.getElementById("startgamebutton").innerText = "Start Game";
+  document.getElementById("startgamebutton").innerText = "Start Timed Game";
   document.getElementById("countdowntimer").innerText = "";
   document.getElementById("numofsets").innerText = "";
   document.getElementById("score").innerText = "";
@@ -332,7 +322,7 @@ highScoreButton.onclick = function () {
 // how to play page
 let howToPlayButton = document.getElementById("howtoplay");
 howToPlayButton.onclick = function () {
-  document.getElementById("startgamebutton").innerText = "Start Game";
+  document.getElementById("startgamebutton").innerText = "Start Timed Game";
   document.getElementById("countdowntimer").innerText = "";
   document.getElementById("numofsets").innerText = "";
   document.getElementById("score").innerText = "";
@@ -344,7 +334,9 @@ howToPlayButton.onclick = function () {
 // start game page
 let startGameButton = document.getElementById("startgamebutton");
 startGameButton.onclick = function () {
-  if (document.getElementById("startgamebutton").innerText === "Start Game") {
+  if (
+    document.getElementById("startgamebutton").innerText === "Start Timed Game"
+  ) {
     playerName = prompt("Please enter your name", "Anonymous");
     if (playerName === null || playerName === "") {
       playerName = "Anonymous";
