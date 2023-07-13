@@ -1,56 +1,67 @@
 # current progress
 
-## main game elements completed
+### main game elements completed
 
-- cards
-  -> had to create the card class and link the images to the correct card
-  -> made use of the way i named the images to loop to find the images and insert it into each card.
-- timer
-  -> initially did it without a variable then had to keep going into the code to change since i wanted it longer and shorter
-  -> in the end added a number variable which might be useful when expending the game to have different countdown durations.
-- gameboard
-  -> had a bit of trouble as the image and card container were two seperate elements and i needed to get the id when i clicked and i could only have one or the other since i was using target instead of currenttarget.
-  -> also when i was trying to pick out the class "cards", it kept giving me undefined. figured cos it was returning and array.
+**cards**
 
-## main gameplay completed
+- had to create the card class and link the images to the correct card
+- made use of the way i named the images to loop to find the images and insert it into each card.
+  **timer**
+- initially did it without a variable then had to keep going into the code to change since i wanted it longer and shorter
+- in the end added a number variable which might be useful when expending the game to have different countdown durations.
+  **gameboard**
+- had a bit of trouble as the image and card container were two seperate elements and i needed to get the id when i clicked and i could only have one or the other since i was using target instead of currenttarget.
+- also when i was trying to pick out the class "cards", it kept giving me undefined. figured cos it was returning and array.
 
--> cards had 4 properties that needed to be checked. initially had 4 different functions but managed to create a property array and a loop to reduce the lines of code.
-->
+### main gameplay completed
 
-## available sets completed
+- cards had 4 properties that needed to be checked. initially had 4 different functions but managed to create a property array and a loop to reduce the lines of code.
 
--> initial loop gave too many sets as it was double counting (e.g. 1,3,8 / 1,8,3 should be 1 but it counted as 2)
+### available sets completed
 
-## replace cards completed
+- initial loop gave too many sets as it was double counting (e.g. 1,3,8 / 1,8,3 should be 1 but it counted as 2)
 
--> problems faced was deselecting cards and removing it from the array
--> figuring out the css to select and deselect the card. had to create an active class that gets switched on and off to manage that
+### replace cards completed
 
-## countdown timer completed
+- problems faced was deselecting cards and removing it from the array
+- figuring out the css to select and deselect the card. had to create an active class that gets switched on and off to manage that
 
-## start game function and trigger completed
+### countdown timer completed
 
-->
+- needed to stop timer when game stops instead of having the function keep running. created an interval variable that can be cleared
 
-## end game function completed
+### game triggers
 
--> had to figure out how to disable game board and to show score
+**start game**
 
-## Display elements
+- created function to load all elements of gameboard
+- create button trigger that starts function
+  **end game**
+- function completed
+- had to figure out how to disable game board and to show score
 
+### display elements
+
+- display cards
 - highlight selected cards
+- hide gameboard when game not in play
+- fixed css styling for game page, how to play page, high score page
 
-# wip
+### scoring page
 
-- highscore display and sorting
+- highscore display and updated completed. pull from player list
+- sorting incomplete
 
-# stretched goals
+## stretched goals
 
-- create challenge mode where the sets available will be 6 and you take the shortest time to find all of them. no replacement of cards.
-- - will need to filter out all 12 card sets with 6 availble sets
-- - will need to disable the replacecards
-- - timer will need to count up like now.
+### create challenge mode
 
-- create a 2 player mode
-- - will need to have 2 timers / 2 players
-- - switch between players.
+- sets available will be 6 and you take the shortest time to find all of them. no replacement of cards.
+- will need to filter out all 12 card sets with 6 availble sets
+- will need to disable the replacecards
+- timer will need to count up like now.
+
+### create a 2 player mode
+
+- will need to have 2 timers / 2 players
+- switch between players.

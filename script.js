@@ -1,15 +1,20 @@
 // create player / player list
-const playerList = [];
-let playerName = "";
+const playerList = [["test", "testscore"]];
+let playerName = "Anonymous";
 let playerScore = 0;
 
 // create timer
 const timer = document.getElementById("countdowntimer");
-
 function timerStart(counter = 60) {
+  timer.innerHTML = "Countdown Timer: " + counter + " seconds left";
   let interval = setInterval(() => {
-    timer.innerHTML = "Countdown Timer: " + counter + " seconds left";
-    if (counter < 1) {
+    timer.innerHTML = "Countdown Timer: " + (counter - 1) + " seconds left";
+    if (document.getElementById("startgamebutton").innerText === "Start Game") {
+      // the game is stopped before timer is up
+      timer.innerHTML = "";
+      clearInterval(interval);
+      document.getElementById("name").innerText = "";
+    } else if (counter === 1) {
       // the timer has reaached zero
       timer.innerHTML = "Times Up";
       clearInterval(interval);
@@ -191,6 +196,11 @@ function checkSets(anyDeck) {
 // function to start the game
 function startGame(time) {
   const d = new Deck(); // initialize deck
+  document.getElementById("main").innerHTML = gameboard;
+  document.getElementById("startgamebutton").innerText = "Stop Game";
+  console.log(playerName);
+  document.getElementById("name").innerText = playerName + " is playing";
+  document.getElementById("score").innerText = "Sets Found: 0";
 
   d.createDeck();
   d.shuffleDeck();
@@ -243,6 +253,12 @@ function startGame(time) {
               playerScore++;
               // replace 3 selected cards
               replaceThreeCards(select, d);
+              // to remove active status
+              let activeDiv = document.getElementsByClassName("active");
+              Array.from(activeDiv).forEach((e) => {
+                e.classList.remove("active");
+              });
+
               checkSets(d.displayDeck);
               document.getElementById("score").innerText =
                 "Sets Found: " + playerScore;
@@ -259,52 +275,69 @@ function startGame(time) {
 function gameEnds() {
   playerScore = document.getElementById("score").innerText.slice(12);
   document.getElementById("name").innerText =
-    "Game is Over. " +
+    "Game is Over.\n " +
     playerName +
     " found " +
     document.getElementById("score").innerText.slice(12) +
     " set(s).";
 
-  const cardDiv = document.getElementsByClassName("card");
-  Array.from(cardDiv).forEach(
-    (e) => (e.innerHTML = `<img id="carda" src="Image/SETlogosmall.JPG" />`)
-  );
-
+  document.getElementById("main").innerHTML = "";
+  document.getElementById("startgamebutton").innerText = "Start Game";
   document.getElementById("countdowntimer").innerText = "";
   document.getElementById("numofsets").innerText = "";
+  document.getElementById("score").innerText = "";
   document.getElementById("remainingcards").innerText = "";
 
   playerList.push([playerName, playerScore]);
-  console.log(playerList);
 
   return;
 }
 
-// initialize game
-
+// high score page
 let highScoreButton = document.getElementById("highscorebutton");
 highScoreButton.onclick = function () {
-  alert("Current High Score");
+  document.getElementById("startgamebutton").innerText = "Start Game";
+  document.getElementById("countdowntimer").innerText = "";
+  document.getElementById("numofsets").innerText = "";
+  document.getElementById("score").innerText = "";
+  document.getElementById("remainingcards").innerText = "";
+  document.getElementById("name").innerText = "";
+
+  let playerListPrint = ``;
+  for (i = 0; i < playerList.length; i++) {
+    console.log(playerListPrint);
+    playerListPrint =
+      playerListPrint +
+      `<tr><td>${playerList[i][0]}</td><td>${playerList[i][1]}</td></tr>`;
+  }
+
+  document.getElementById(
+    "main"
+  ).innerHTML = `<table><tr><th>Player Name</th><th>Score</th></tr>${playerListPrint}</table>`;
 };
 
+// how to play page
 let howToPlayButton = document.getElementById("howtoplay");
 howToPlayButton.onclick = function () {
-  confirm(
-    "Instructions to Play can be found at https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf"
-  );
+  document.getElementById("startgamebutton").innerText = "Start Game";
+  document.getElementById("countdowntimer").innerText = "";
+  document.getElementById("numofsets").innerText = "";
+  document.getElementById("score").innerText = "";
+  document.getElementById("remainingcards").innerText = "";
+  document.getElementById("main").innerHTML = howToPlay;
+  document.getElementById("name").innerText = "";
 };
 
+// start game page
 let startGameButton = document.getElementById("startgamebutton");
 startGameButton.onclick = function () {
-  let text = "";
-  playerName = prompt("Please enter your name", "Anonymous");
-  if (playerName === null || playerName === "") {
-    text = "No name given";
+  if (document.getElementById("startgamebutton").innerText === "Start Game") {
+    playerName = prompt("Please enter your name", "Anonymous");
+    if (playerName === null || playerName === "") {
+      playerName = "Anonymous";
+    }
+    startGame(10);
   } else {
-    text = "Hello" + playerName;
+    gameEnds();
   }
-  document.getElementById("name").innerText = playerName + " is playing";
-
-  startGame(20);
-  return playerName;
 };

@@ -1,24 +1,31 @@
-# Project1
+# Game Name: SETS
 
-Game Name: SETS
-Description Link: https://en.wikipedia.org/wiki/Set_(card_game)
+### Background
 
-current progress
+Game is based on the card game SETS
+[Link to GAME](https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf)
 
-- main gameplay is complete
-- availble sets completed
-- replace cards completed
-- countdown timer completed
-- start game function and trigger completed
-- end game function completed
-- highlight selected cards
+### Technologies Used:
 
-wip
+- JavaScript
+- HTML
+- CSS
 
-- highscore display and sorting
+### Getting Started
 
-stretched goals
+- Unzip the zip file
+- click index.html to start play the game
 
-- create game where the sets available will be 6 and you take the shortest time to find all of them. no replacement of cards.
-- - will need to disable the replacecards
-- - timer will need to count up like now.
+### Next Step
+
+**create challenge mode**
+
+- sets available will be 6 and you take the shortest time to find all of them. no replacement of cards.
+- will need to filter out all 12 card sets with 6 availble sets
+- will need to disable the replacecards
+- timer will need to count up like now.
+
+**create a 2 player mode**
+
+- will need to have 2 timers / 2 players
+- switch between players.
