@@ -46,11 +46,8 @@ const howToPlay = `
 <p>
   The objective of the game is to identify a SET of 3 cards from 12 cards placed
   face up on the table. Each card has four properties which can vary as follows.
-  There are 81 unique cards in the deck. Once a SET has been found, the card
-  will be replaced by another 3 cards from the remaining deck.
 </p>
-<h2>Deck</h2>
-
+<h2>Card Properties</h2>
 <h3>Shape</h3>
 <div class = "imageblocks"><img src="Image/red1soliddiamond.png" />
 <img src="Image/red1solidoval.png" />
@@ -64,20 +61,29 @@ const howToPlay = `
 <img src="Image/red1stripeddiamond.png" />
 <img src="Image/red1opendiamond.png" /></div>
 <h3>Number</h3>
-<div class = "imageblocks"><img src="Image/red1soliddiamond.png" />
-<img src="Image/red2soliddiamond.png" />
-<img src="Image/red3soliddiamond.png" />
+<div class = "imageblocks"><img src="Image/red1openoval.png" />
+<img src="Image/red2openoval.png" />
+<img src="Image/red3openoval.png" />
 </div>
 <h2>What is a Set?</h2>
-<p>
-  A SET consists of 3 cards in which each of the cards properties are the same
-  on each card, or are different on each card. All the properties must
-  separately satisfy this rule.
-</p>
-<h3>Example</h3>
+<p>A SET consists of 3 cards in which each of the card's properties are all the same
+  on each card, or are all different on each card.\n</p>
+<p>All the properties must separately satisfy this rule.</p>
+<h3>Example 1:</h3>
 <div class = "imageblocks"><img src="Image/red1soliddiamond.png" />
 <img src="Image/green2openoval.png" />
 <img src="Image/purple3stripedsquiggle.png" />
+</div>
+<h3>Example 2:</h3>
+<p> The SET above simliar colors, simliar shapes, different numbers, different shades.</p>
+<div class = "imageblocks"><img src="Image/red1solidoval.png" />
+<img src="Image/red2openoval.png" />
+<img src="Image/red3stripedoval.png" />
+</div>
+<p>The SET above has different colors, different shapes, different numbers, different shades.</p>
+<h2>Additional Notes</h2>
+<p>There are 81 unique cards in the deck.</p>
+<p>Once a SET has been found, the card will be replaced by another 3 cards from the remaining deck.</p>
 </div>
 </div>
 `;

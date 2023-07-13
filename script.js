@@ -1,5 +1,5 @@
 // create player / player list
-const playerList = [["test", "testscore"]];
+const playerList = [["Mel", 8]];
 let playerName = "Anonymous";
 let playerScore = 0;
 
@@ -336,7 +336,7 @@ startGameButton.onclick = function () {
     if (playerName === null || playerName === "") {
       playerName = "Anonymous";
     }
-    startGame(10);
+    startGame(20);
   } else {
     gameEnds();
   }
