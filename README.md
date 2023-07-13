@@ -3,6 +3,7 @@
 ### Background
 
 Game is based on the card game SETS
+
 [Link to Original SET Game Instructions](https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf)
 
 ### Technologies Used:
