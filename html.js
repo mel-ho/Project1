@@ -70,17 +70,18 @@ const howToPlay = `
   on each card, or are all different on each card.\n</p>
 <p>All the properties must separately satisfy this rule.</p>
 <h3>Example 1:</h3>
+<p>The SET below has different colors, different shapes, different numbers, different shades.</p>
 <div class = "imageblocks"><img src="Image/red1soliddiamond.png" />
 <img src="Image/green2openoval.png" />
 <img src="Image/purple3stripedsquiggle.png" />
 </div>
 <h3>Example 2:</h3>
-<p> The SET above simliar colors, simliar shapes, different numbers, different shades.</p>
+<p> The SET below  simliar colors, simliar shapes, different numbers, different shades.</p>
 <div class = "imageblocks"><img src="Image/red1solidoval.png" />
 <img src="Image/red2openoval.png" />
 <img src="Image/red3stripedoval.png" />
 </div>
-<p>The SET above has different colors, different shapes, different numbers, different shades.</p>
+
 <h2>Additional Notes</h2>
 <p>There are 81 unique cards in the deck.</p>
 <p>Once a SET has been found, the card will be replaced by another 3 cards from the remaining deck.</p>

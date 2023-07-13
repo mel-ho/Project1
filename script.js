@@ -1,10 +1,11 @@
 // create player / player list
 const playerList = [
-  ["Mel", 3],
-  ["John", 2],
+  ["Mel", 3, "Timed"],
+  ["John", 2, "Continuous"],
 ];
 let playerName = "Anonymous";
 let playerScore = 0;
+let playerMode = "Timed";
 
 // create timer
 const timer = document.getElementById("countdowntimer");
@@ -190,9 +191,9 @@ function checkSets(anyDeck) {
         "Sets Available: " + numOfSets;
     }
   }
-  // haven't tested. if no more sets to redeal
+  // haven't tested.
   if (numOfSets === 0) {
-    d.selectStartingCards();
+    gameEnds();
   }
 }
 
@@ -201,7 +202,6 @@ function startGame(time) {
   const d = new Deck(); // initialize deck
   document.getElementById("main").innerHTML = gameboard;
   document.getElementById("startgamebutton").innerText = "Stop Game";
-  console.log(playerName);
   document.getElementById("name").innerText = playerName + " is playing";
   document.getElementById("score").innerText = "Sets Found: 0";
 
@@ -276,6 +276,7 @@ function startGame(time) {
 }
 
 function gameEnds() {
+  let playerMode = "Timed";
   playerScore = document.getElementById("score").innerText.slice(12);
   document.getElementById("name").innerText =
     "Game is Over.\n " +
@@ -298,7 +299,7 @@ function gameEnds() {
       playerList.splice(i, 0, [playerName, playerScore]);
       break;
     } else {
-      playerList.push([playerName, playerScore]);
+      playerList.push([playerName, playerScore, playerMode]);
       break;
     }
   }
@@ -318,15 +319,14 @@ highScoreButton.onclick = function () {
 
   let playerListPrint = ``;
   for (i = 0; i < playerList.length; i++) {
-    console.log(playerListPrint);
     playerListPrint =
       playerListPrint +
-      `<tr><td>${playerList[i][0]}</td><td>${playerList[i][1]}</td></tr>`;
+      `<tr><td>${playerList[i][0]}</td><td>${playerList[i][1]}</td><td>${playerList[i][2]}</td></tr>`;
   }
 
   document.getElementById(
     "main"
-  ).innerHTML = `<table><tr><th>Player Name</th><th>Score</th></tr>${playerListPrint}</table>`;
+  ).innerHTML = `<table><tr><th>Player Name</th><th>Score</th><th>Player Mode</th></tr>${playerListPrint}</table>`;
 };
 
 // how to play page

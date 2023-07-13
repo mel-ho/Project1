@@ -18,6 +18,13 @@ Game is based on the card game SETS
 
 ### Next Step
 
+**create continuous mode**
+
+- no timer
+- cards will keep being replaced.
+- bug found: hangs when no more cards to replace
+- bug found: when no available sets = 0, hangs.
+
 **create challenge mode**
 
 - sets available will be 6 and you take the shortest time to find all of them. no replacement of cards.
