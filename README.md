@@ -3,7 +3,7 @@
 ### Background
 
 Game is based on the card game SETS
-[Link to GAME](https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf)
+[Link to Original SET Game Instructions](https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf)
 
 ### Technologies Used:
 
@@ -15,6 +15,7 @@ Game is based on the card game SETS
 
 - Unzip the zip file
 - click index.html to start play the game
+- You can also play the game at [Link to game](https://wallgecko-sets.netlify.app/)
 
 ### Next Steps:
 
