@@ -50,9 +50,14 @@
 ### scoring page
 
 - highscore display and updated completed. pull from player list
-- sorting incomplete
+- highscore sorting completed. interate thru player score list and slice value in if larger.
 
 ## stretched goals
+
+### create a 2 player mode
+
+- will need to have 2 timers / 2 players
+- switch between players.
 
 ### create challenge mode
 
@@ -60,8 +65,3 @@
 - will need to filter out all 12 card sets with 6 availble sets
 - will need to disable the replacecards
 - timer will need to count up like now.
-
-### create a 2 player mode
-
-- will need to have 2 timers / 2 players
-- switch between players.

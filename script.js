@@ -1,5 +1,8 @@
 // create player / player list
-const playerList = [["Mel", 8]];
+const playerList = [
+  ["Mel", 3],
+  ["John", 2],
+];
 let playerName = "Anonymous";
 let playerScore = 0;
 
@@ -165,9 +168,9 @@ function checkSets(anyDeck) {
   let set = [];
   let numOfSets = 0;
 
-  for (x = 0; x < anyDeck.length - 2; x++) {
-    for (y = x + 1; y < anyDeck.length - 1; y++) {
-      for (z = y + 1; z < anyDeck.length; z++) {
+  for (let x = 0; x < anyDeck.length - 2; x++) {
+    for (let y = x + 1; y < anyDeck.length - 1; y++) {
+      for (let z = y + 1; z < anyDeck.length; z++) {
         set = [
           [x, anyDeck[x]],
           [y, anyDeck[y]],
@@ -288,7 +291,17 @@ function gameEnds() {
   document.getElementById("score").innerText = "";
   document.getElementById("remainingcards").innerText = "";
 
-  playerList.push([playerName, playerScore]);
+  console.log("Player List:" + playerList);
+
+  for (i = 0; i < playerList.length; i++) {
+    if (playerList[i][1] <= playerScore) {
+      playerList.splice(i, 0, [playerName, playerScore]);
+      break;
+    } else {
+      playerList.push([playerName, playerScore]);
+      break;
+    }
+  }
 
   return;
 }
