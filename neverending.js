@@ -10,13 +10,13 @@ function startNeverendingGame() {
   d.createDeck();
   d.shuffleDeck();
   d.selectStartingCards();
-  let playerMode = "Continuous";
+  playerMode = "Continuous";
   checkSets(d.displayDeck);
 
   // code to select 3 cards
 
   const select = [];
-  let playerScore = 0;
+  playerScore = 0;
 
   // getting all the elements with the card class and returning it in an array
   const cardDiv = document.getElementsByClassName("card");
@@ -115,8 +115,12 @@ startGameNeverendingButton.onclick = function () {
     if (playerName === null || playerName === "") {
       playerName = "Anonymous";
     }
+
     startNeverendingGame();
-  } else {
+  } else if (
+    document.getElementById("startgameneverendingbutton").innerText ===
+    "Stop Continuous Mode"
+  ) {
     endNeverendingGame();
   }
 };
