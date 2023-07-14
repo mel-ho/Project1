@@ -3,7 +3,7 @@ function startNeverendingGame() {
   const d = new Deck(); // initialize deck
   document.getElementById("main").innerHTML = gameboard;
   document.getElementById("startgameneverendingbutton").innerText =
-    "Stop Continuous Mode";
+    "Stop Cont. Mode";
   document.getElementById("name").innerText = playerName + " is playing";
   document.getElementById("score").innerText = "Sets Found: 0";
 
@@ -119,7 +119,7 @@ startGameNeverendingButton.onclick = function () {
     startNeverendingGame();
   } else if (
     document.getElementById("startgameneverendingbutton").innerText ===
-    "Stop Continuous Mode"
+    "Stop Cont. Mode"
   ) {
     endNeverendingGame();
   }
