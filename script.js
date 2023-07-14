@@ -190,7 +190,14 @@ function checkSets(anyDeck) {
   }
   // haven't tested.
   if (numOfSets === 0) {
-    gameEnds();
+    if (document.getElementById("startGameButton").innerText === "Stop Game") {
+      gameEnds();
+    } else if (
+      document.getElementById("startgameneverendingbutton").innerText ===
+      "Stop Continuous Mode"
+    ) {
+      endNeverendingGame();
+    }
   }
 }
 
